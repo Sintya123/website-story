@@ -6,7 +6,13 @@ const Dashboard = {
   async _initialData() {
     const fetchRecords = await fetch('/data/DATA.json');
     const responseRecords = await fetchRecords.json();
-    this._userlistStory = responseRecords.results.listStory;
+
+    /**
+     * Udah kamu parse, di DATA.json gak ada kata "results"
+     */
+
+    //! this._userlistStory = responseRecords.results.listStory;
+    this._userlistStory = responseRecords.listStory;
     this._populatelistStoryRecordToTable(this._userlistStory);
     this._populatelistStoryDataToCard(this._userlistStory);
   },
@@ -41,7 +47,13 @@ const Dashboard = {
   },
 
   _populatelistStoryRecordToTable(listStory = null) {
-    if (!(typeof istStory=== 'object')) {
+    
+    /**
+     * ada typo disini, harusnya listStory bukan istStory
+     */
+    
+    //! if (!(typeof istStory=== 'object')) {
+    if (!(typeof listStory=== 'object')) {
       throw new Error(
         `Parameter listStory should be an object. The value is ${listStory}`,
       );
